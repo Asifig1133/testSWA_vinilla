@@ -1,17 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>Vanilla JavaScript App</title>
-</head>
-
-<body>
-  <main>
-    <h1>Vanilla JavaScript App</h1>
-  </main>
-</body>
-
-</html>
+<!DOCTYPE html>  
+<html lang="en">  
+  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" href="styles.css">  
+    <title>Vanilla JavaScript App</title>  
+</head>  
+  
+<body>  
+    <main>  
+    <h1>Vanilla JavaScript App</h1> 
+    <div>
+      <a href="/.auth/login/aadb2c">Login</a>
+      <a href="/.auth/logout">Logout</a>
+    </div>
+    <p>Loading content from the API:</p>  
+    <ul id="products"></ul>  
+    </main>  
+  
+    <script>  
+    (async function() {  
+        const products = await( await fetch(`/api/gettodo`)).json();  
+        const productsElement = document.querySelector('#products');  
+  
+        products.forEach(product => {  
+            const listItem = document.createElement('li');  
+            listItem.textContent = `ID: ${product.Id}, Order: ${product.order}, Title: ${product.title}, URL: ${product.url}, Completed: ${product.completed}`;  
+            productsElement.appendChild(listItem);  
+        });  
+    }());  
+    </script>  
+</body>  
+  
+</html>  
